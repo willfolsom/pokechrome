@@ -11,7 +11,7 @@
     "128": "pokeball64.png"
   },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["background.ts"]
   },
   "permissions": ["tabs", "activeTab", "storage", "background"]
 }
