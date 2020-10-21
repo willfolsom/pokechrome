@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Pokemon } from '../services/types/Pokemon';
 import { PokeApiService } from '../services/PokeApi';
 import { TallGrassService } from '../services/TallGrass';
-import { getCurrentTab } from '../services/Utils';
+import { getCurrentTab, setCurrentIcon } from '../services/Utils';
 import { ChromeTab } from '../services/types/ChromeTab';
 import './Pokedex.sass';
 
@@ -15,12 +15,12 @@ export default class Pokedex extends Component {
     componentDidMount() {
         var encountered: number;
 
-        if (!this.state.pokemon.id) {
+        if (!this.state.pokemon.id){
             getCurrentTab((tab: ChromeTab) => {
                 encountered = TallGrassService.stepIntoGrass(tab.url);
 
                 PokeApiService.getPokemonById(encountered)
-                    .then(p => { this.setState({pokemon: p}); });
+                    .then(p => { this.setState({pokemon: p}); setCurrentIcon(p.sprites?.front_default);});
             });
         }
     }
