@@ -19,11 +19,8 @@ export default class Pokedex extends Component {
             if (message.salutations) {
                 encountered = TallGrassService.stepIntoGrass(message.salutations);
 
-                PokeApiService.getPokemonImageById(encountered)
-                    .then(p => setCurrentIcon(p));
-
                 PokeApiService.getPokemonById(encountered)
-                    .then(p => this.setState({pokemon: p}));
+                    .then(p => { this.setState({pokemon: p}); setCurrentIcon(p.sprites?.front_default); });
             }
         });
 
@@ -32,7 +29,7 @@ export default class Pokedex extends Component {
                 encountered = TallGrassService.stepIntoGrass(tab.url);
 
                 PokeApiService.getPokemonById(encountered)
-                    .then(p => this.setState({pokemon: p}));
+                    .then(p => { this.setState({pokemon: p}); setCurrentIcon(p.sprites?.front_default); });
             });
         }
     }
