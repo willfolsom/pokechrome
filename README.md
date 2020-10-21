@@ -28,9 +28,7 @@ As you navigate to different tabs, the Pokedex will identify a Pokemon from the 
 
 Builds the app as a usable Chrome Extension to the **build** folder.<br/>
 Navigate to **chrome://extensions** in Chrome, then click **Load unpacked** and select the base **build** folder.<br/>
-After loading the extension, it can be debugged in the same way as the web app.<br/>
-
-There is also a packed version available for install in the works.
+After loading the extension, it can be debugged in the same way as a web app.<br/>
 
 ---
 
