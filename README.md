@@ -32,4 +32,4 @@ After loading the extension, it can be debugged in the same way as the web app.
 
 ### Background.js Disclosure
 
-This does use a background script to listen to the active Chrome tab, but never makes a call outside of the extension context.
+This does use a background script to listen to the active Chrome tab, but only fires a message that the React App will pickup.
