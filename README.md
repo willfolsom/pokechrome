@@ -2,7 +2,7 @@
 
 ### Pokedex Chrome Extension
 
-This is Chrome Extension React App using Typescript, Webpack, SASS, and the PokeAPI. It can be built and installed in your browser.<br/>
+This is Chrome Extension and React App using Typescript, Webpack, SASS, and the PokeAPI. It can be built and installed in your browser.<br/>
 
 ![Pokechrome](public/screeny.png)
 
@@ -10,7 +10,7 @@ This is Chrome Extension React App using Typescript, Webpack, SASS, and the Poke
 
 ### Encounter Pokemon in Tall Grass (aka The Internet)
 
-As you navigate to different tabs, the Pokedex will identify a Pokemon from the original generation associated with the current tab you are viewing, as it would during a random Pokemon encounter in tall grass. It will then update the extension icon, and will display the Pokedex information, as well as a search bar for other Pokemon.<br/>
+As you navigate to different tabs, the Pokedex will identify a Pokemon from the original generation associated with the current tab you are viewing, as it would during a random Pokemon encounter in tall grass. It will then update the extension icon, and can display the Pokedex information, as well as a search bar for other Pokemon.<br/>
 
 ![Demo](public/demo.gif)
 
