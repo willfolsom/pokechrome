@@ -20,6 +20,6 @@ Builds the app as a usable Chrome Extension to the **build** folder.<br/>
 Navigate to **chrome://extensions** in Chrome, then click **Load unpacked** and select the base **build** folder.<br/>
 After loading the extension, it can be debugged in the same way as the web app.
 
-### Discolsure
+### Background.js Disclosure
 
-It does use a background script, but never makes a call outside of the extension context.
+It does use a background script to listen to the active Chrome tab, but never makes a call outside of the extension context.
