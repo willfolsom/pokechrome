@@ -14,7 +14,7 @@ As you navigate to different tabs, the Pokedex will identify a Pokemon from the 
 
 ![Demo](public/demo.gif)
 
-(These gif slowed down the process, I promise the process is faster / responsive.)
+(These gifs slowed down the process, but the process is faster and responsive.)
 
 ![Rapid Demo](public/rapid-demo.gif)
 
@@ -34,4 +34,4 @@ After loading the extension, it can be debugged in the same way as a web app.<br
 
 ### Background.js Disclosure
 
-This does use a background script to listen to the active Chrome tab, but only fires a message that the React App will pickup.
+This does use a background script to listen to the active Chrome tab.
