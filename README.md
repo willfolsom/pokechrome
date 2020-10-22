@@ -2,7 +2,7 @@
 
 ### Pokedex Chrome Extension
 
-This is a Chrome Extension React App using Typescript, Webpack, SASS, and the PokeAPI. It can be built and installed in your browser.<br/>
+This is a Chrome Extension and React App using Typescript, Webpack, SASS, and the PokeAPI. It can be built and installed in your browser.<br/>
 
 ![Pokechrome](public/screeny.png)
 
