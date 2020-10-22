@@ -10,7 +10,7 @@ This is a Chrome Extension and React App using Typescript, Webpack, SASS, and th
 
 ### Encounter Pokemon in Tall Grass (aka The Internet)
 
-As you switch tabs, the Pokedex will identify a Pokemon (from the original generation) associated with the tab you are viewing, as it would during a random Pokemon encounter in tall grass. It will then update the extension icon, and can display the Pokedex information, as well as a search bar for other Pokemon. Every website is unique, but repeatable.<br/>
+As you switch tabs, the Pokedex will identify a Pokemon (from the original generation) associated with the tab you are viewing, as it would during a random Pokemon encounter in tall grass. It will then update the extension icon, and can display the Pokedex information, as well as a search bar for other Pokemon.<br/>
 
 ![Demo](public/demo.gif)
 
