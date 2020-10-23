@@ -9,11 +9,7 @@ chrome.tabs.onActivated.addListener(activeInfo => {
 
 function updateIconFromUrl(url) {
     // Simple hash to get Pokemon ID from URL
-    var hash = 0;
-    for (var i = 0; i < url.length; i++) {
-        hash += url.charCodeAt(i);
-    }
-    var encountered = hash % pokedexIdMax;
+    var encountered = encounter(url);
 
     // Fetch the path to the PNG of the Pokemon
     fetch('https://pokeapi.co/api/v2/pokemon/' + `${encountered}`)
@@ -28,7 +24,7 @@ function setCurrentIcon(icon) {
     img.onload = function() {
         var canvas = document.createElement('canvas');
         canvas.width = img.width;
-        canvas.height = img.height
+        canvas.height = img.height;
         var canvasContext = canvas.getContext('2d');
         canvasContext?.clearRect(0, 0, canvas.width, canvas.height);
         canvasContext?.drawImage(img, 0, 0, canvas.width, canvas.height);
@@ -36,4 +32,12 @@ function setCurrentIcon(icon) {
         chrome.browserAction.setIcon({imageData: id});
     };
     img.src = icon;
+}
+
+function encounter(url){
+    var hash = 0;
+    for (var i = 0; i < url.length; i++) {
+        hash += url.charCodeAt(i);
+    }
+    return hash % pokedexIdMax;
 }

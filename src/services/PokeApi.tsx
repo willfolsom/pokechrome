@@ -20,13 +20,15 @@ export class PokeApiService {
     public static getPokemonById(id: number): Promise<Pokemon> {
         return fetch(pokeapiUrl + `${id}`, getOptions)
             .then(res => res.json())
-            .then(res => this.formatPokemon(res));
+            .then(res => this.formatPokemon(res))
+            .catch();
     };
 
     public static getPokemonImageById(id: number): Promise<string> {
         return fetch(pokeapiUrl + `${id}`, getOptions)
             .then(res => res.json())
-            .then(res => this.formatPokemon(res).sprites.front_default);
+            .then(res => this.formatPokemon(res).sprites.front_default)
+            .catch();
     };
 
     private static formatPokemon(pokemonData: any): Pokemon {

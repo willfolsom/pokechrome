@@ -13,14 +13,15 @@ export default class Pokedex extends Component {
     }
 
     componentDidMount() {
-        var encountered: number;
+        chrome.runtime.onMessage.addListener((message) => {
+            if (message.salutations) {
+                this.setPokemonAndIcon(message.salutations);
+            }
+        });
 
         if (!this.state.pokemon.id){
             getCurrentTab((tab: ChromeTab) => {
-                encountered = TallGrassService.stepIntoGrass(tab.url);
-
-                PokeApiService.getPokemonById(encountered)
-                    .then(p => { this.setState({pokemon: p}); setCurrentIcon(p.sprites?.front_default);});
+                this.setPokemonAndIcon(tab.url);
             });
         }
     }
@@ -29,19 +30,28 @@ export default class Pokedex extends Component {
         input = input.toLowerCase();
         PokeApiService.getPokemonByName(input).then(p => {
             if (p) {
-                this.setState({searches: [...this.state.searches, p]})
-                this.setState({pokemon: p})
+                // Take last two then add in the new result
+                var newSearches = this.state.searches.slice(Math.max(this.state.searches.length - 2, 0));
+                this.setState({searches: [...newSearches, p]});
+                this.setState({pokemon: p});
             }
         });
     }
 
     reDisplay(p: Pokemon) {
-        this.setState({pokemon: p})
+        this.setState({pokemon: p});
     }
 
     capitalize(s: string) {
-        if (typeof s !== 'string') return ''
-        return s.charAt(0).toUpperCase() + s.slice(1)
+        if (typeof s !== 'string') return '';
+        return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+
+    setPokemonAndIcon(url: string) {
+        var encountered = TallGrassService.stepIntoGrass(url);
+
+        PokeApiService.getPokemonById(encountered)
+            .then(p => { this.setState({pokemon: p}); setCurrentIcon(p.sprites?.front_default);});
     }
 
     render() {
@@ -71,7 +81,7 @@ export default class Pokedex extends Component {
                     { pokemon?.abilities &&
                         <div className="abilities">
                             <div>Abilities:</div>
-                            {pokemon.abilities?.slice(0,3).map(ability => (
+                            {pokemon.abilities?.slice(0,5).map(ability => (
                             <li>{ability.ability.name}</li>
                         ))}
                         </div>
@@ -87,7 +97,7 @@ export default class Pokedex extends Component {
                 </div>
                 { searches.length > 0 &&
                     <div className="searches">
-                        <div className="last3">Last 3 Searches:</div>
+                        <div className="last3">Last {searches.length} Searches:</div>
                         {searches.slice(Math.max(searches.length - 3, 0)).map(search => (
                             <ul>
                                 <li><a onClick={(): void => this.reDisplay(search)}>{this.capitalize(search.name)}</a></li>
