@@ -4,6 +4,7 @@ import { PokeApiService } from '../services/PokeApi';
 import { TallGrassService } from '../services/TallGrass';
 import { getCurrentTab, setCurrentIcon } from '../services/Utils';
 import { ChromeTab } from '../services/types/ChromeTab';
+import Loading from './Loading'
 import './Pokedex.sass';
 
 export default class Pokedex extends Component {
@@ -62,7 +63,8 @@ export default class Pokedex extends Component {
                 <div className="navbar">
                     <input type="text" className="input" placeholder="Search" onChange={event => this.handleSearch(event.target.value)} />
                 </div>
-                <div className="card">
+                { pokemon?.name
+                ? <div className="card">
                     <div className="name">
                         {this.capitalize(pokemon.name)}, No. {pokemon.id}
                     </div>
@@ -95,6 +97,8 @@ export default class Pokedex extends Component {
                         </div>
                     }
                 </div>
+                : <Loading/>
+                }
                 { searches.length > 0 &&
                     <div className="searches">
                         <div className="last3">Last {searches.length} Searches:</div>
