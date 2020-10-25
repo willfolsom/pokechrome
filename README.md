@@ -14,9 +14,9 @@ As you switch tabs, the Pokedex will identify a Pokemon (from the original gener
 
 ![Demo](public/demo.gif)
 
-(These gifs seemed to slow down the process, but its faster.)
+(Note the extension icon changing and the loader.)
 
-![Rapid Demo](public/rapid-demo.gif)
+![Rapid Demo](public/demo-rapid.gif)
 
 ---
 
@@ -32,7 +32,7 @@ After loading the extension, it can be debugged in the same way as a web app.<br
 
 #### `npm run clean-install`
 
-Nukes node_modules and re-installs.
+Nukes node_modules/ and build/ and re-installs.
 
 ---
 

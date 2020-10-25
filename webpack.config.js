@@ -15,8 +15,8 @@ module.exports = {
   mode: process.env.NODE_ENV,
   devtool: 'inline-source-map',
   entry: {
-    contentscript: join(__dirname, 'src/contentscript.ts'),
-    background: join(__dirname, 'src/background.ts'),
+    contentscript: join(__dirname, 'contentscript.ts'),
+    background: join(__dirname, 'background.ts'),
   },
   output: {
     path: join(__dirname, 'dist'),
