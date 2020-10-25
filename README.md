@@ -30,6 +30,10 @@ Builds the app as a usable Chrome Extension to the **build** folder.<br/>
 Navigate to **chrome://extensions** in Chrome, then click **Load unpacked** and select the base **build** folder.<br/>
 After loading the extension, it can be debugged in the same way as a web app.<br/>
 
+#### `npm run clean-install`
+
+Nukes node_modules and re-installs.
+
 ---
 
 ### Background.js Disclosure
