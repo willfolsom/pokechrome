@@ -21,7 +21,6 @@ As you switch tabs, the Pokedex will identify a Pokemon (from the original gener
 ---
 
 ### Run It
-<sub><sup>If you see a failed CircleCI build, ignore it. This all works.</sub></sup>
 
 #### `npm i`
 
