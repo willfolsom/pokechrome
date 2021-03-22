@@ -4,6 +4,8 @@
 
 This is a Chrome Extension and React App using Typescript, Webpack, SASS, and the PokeAPI. It can be built and installed in your browser.<br/>
 
+(Working as of 3/21/21. If something is up, open an issue.)<br/>
+
 ![Pokechrome](public/screeny.png)
 
 ---
