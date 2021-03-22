@@ -10,28 +10,28 @@ const getOptions: object = {
 };
 
 export class PokeApiService {
-    public static getPokemonByName(name: string): Promise<Pokemon> {
+    getPokemonByName(name: string): Promise<Pokemon> {
         return fetch(pokeapiUrl + `${name}`, getOptions)
             .then(res => res.json())
             .then(res => this.formatPokemon(res))
             .catch()
     };
 
-    public static getPokemonById(id: number): Promise<Pokemon> {
+    getPokemonById(id: number): Promise<Pokemon> {
         return fetch(pokeapiUrl + `${id}`, getOptions)
             .then(res => res.json())
             .then(res => this.formatPokemon(res))
             .catch();
     };
 
-    public static getPokemonImageById(id: number): Promise<string> {
+    getPokemonImageById(id: number): Promise<string> {
         return fetch(pokeapiUrl + `${id}`, getOptions)
             .then(res => res.json())
             .then(res => this.formatPokemon(res).sprites.front_default)
             .catch();
     };
 
-    private static formatPokemon(pokemonData: any): Pokemon {
+    formatPokemon(pokemonData: any): Pokemon {
         return {
             abilities: pokemonData.abilities,
             id: pokemonData.id,

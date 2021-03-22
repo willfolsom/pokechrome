@@ -7,10 +7,29 @@ import { ChromeTab } from '../services/types/ChromeTab';
 import Loading from './Loading'
 import './Pokedex.sass';
 
+interface State {
+    pokemon: Pokemon;
+    searches: Pokemon[];
+}
+
+const pokeApiService = new PokeApiService();
+const tallGrassService = new TallGrassService();
+
 export default class Pokedex extends Component {
-    state = {
-        pokemon: {} as Pokemon,
-        searches: [] as Pokemon[]
+
+    state: State = {
+        pokemon: {
+            id: 0,
+            name: "",
+            abilities: [],
+            sprites: {
+                front_default: "",
+            },
+            types: [],
+            moves: [],
+            weight: 0
+        },
+        searches: []
     }
 
     componentDidMount() {
@@ -29,7 +48,7 @@ export default class Pokedex extends Component {
 
     handleSearch(input: string) {
         input = input.toLowerCase();
-        PokeApiService.getPokemonByName(input).then(p => {
+        pokeApiService.getPokemonByName(input).then(p => {
             if (p) {
                 // Take last two then add in the new result
                 var newSearches = this.state.searches.slice(Math.max(this.state.searches.length - 2, 0));
@@ -49,9 +68,9 @@ export default class Pokedex extends Component {
     }
 
     setPokemonAndIcon(url: string) {
-        var encountered = TallGrassService.stepIntoGrass(url);
+        var encountered = tallGrassService.stepIntoGrass(url);
 
-        PokeApiService.getPokemonById(encountered)
+        pokeApiService.getPokemonById(encountered)
             .then(p => { this.setState({pokemon: p}); setCurrentIcon(p.sprites?.front_default);});
     }
 
