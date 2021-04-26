@@ -7,7 +7,8 @@ export type Pokemon = {
     },
     types: PokemonType[],
     moves: Move[],
-    weight: number
+    weight: number,
+    caught: boolean,
 };
 
 export type PokemonType = {
@@ -29,3 +30,23 @@ export type Move = {
         name: string
     }
 };
+
+export type PokemonLocalStorage = {
+    id: number,
+    caught: boolean
+}
+
+export function createNewPokemon(): Pokemon {
+    return {
+        id: 0,
+        name: "",
+        abilities: [],
+        sprites: {
+            front_default: "",
+        },
+        types: [],
+        moves: [],
+        weight: 0,
+        caught: false,
+    }
+}

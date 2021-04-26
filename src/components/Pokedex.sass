@@ -3,7 +3,7 @@
     min-height: 40px
     border-radius: 0px 0px 7px 7px
 
-.input
+.searchInput
     margin: 8px
     width: 80%
 
@@ -103,3 +103,21 @@
     .name
         font-weight: bold
         font-size: 14px
+
+.caughtBall
+    position: absolute
+    top: 60px
+    left: 15px
+
+input.caughtBall
+	-webkit-appearance: none
+	width: 20px
+	height: 20px
+	border: 2px solid #000
+	border-radius: 50%
+	outline: none
+	cursor: pointer
+	font-weight: bold
+
+input.caughtBall:checked:after
+	content: url('../assets/pokeball16.png')

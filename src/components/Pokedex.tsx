@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Pokemon } from '../services/types/Pokemon';
+import { Pokemon, createNewPokemon } from '../services/types/Pokemon';
 import { PokeApiService } from '../services/PokeApi';
 import { TallGrassService } from '../services/TallGrass';
 import { getCurrentTab, setCurrentIcon } from '../services/Utils';
@@ -16,19 +16,8 @@ const pokeApiService = new PokeApiService();
 const tallGrassService = new TallGrassService();
 
 export default class Pokedex extends Component {
-
     state: State = {
-        pokemon: {
-            id: 0,
-            name: "",
-            abilities: [],
-            sprites: {
-                front_default: "",
-            },
-            types: [],
-            moves: [],
-            weight: 0
-        },
+        pokemon: createNewPokemon(),
         searches: []
     }
 
@@ -68,10 +57,23 @@ export default class Pokedex extends Component {
     }
 
     setPokemonAndIcon(url: string) {
+        console.error('firing');
         var encountered = tallGrassService.stepIntoGrass(url);
 
         pokeApiService.getPokemonById(encountered)
-            .then(p => { this.setState({pokemon: p}); setCurrentIcon(p.sprites?.front_default);});
+            .then(p => {
+                this.setState({pokemon: p});
+                setCurrentIcon(p.sprites?.front_default);
+            });
+    }
+
+    captureOrReleasePokemon(pokemon: Pokemon, caught: boolean) {
+        pokeApiService.storePokemonByIdLocal(pokemon.id, caught);
+
+        pokemon.caught = caught;
+		this.setState({
+			pokemon: pokemon
+		})
     }
 
     render() {
@@ -79,8 +81,11 @@ export default class Pokedex extends Component {
 
         return (
             <div>
+                { pokemon?.name
+                ? <input className="caughtBall" type="checkbox" checked={pokemon.caught} onChange={(e) => this.captureOrReleasePokemon(pokemon, e.target.checked)}/>
+                : null }
                 <div className="navbar">
-                    <input type="text" className="input" placeholder="Search" onChange={event => this.handleSearch(event.target.value)} />
+                    <input type="text" className="searchInput" placeholder="Search" onChange={event => this.handleSearch(event.target.value)} />
                 </div>
                 { pokemon?.name
                 ? <div className="card">
@@ -102,7 +107,7 @@ export default class Pokedex extends Component {
                     { pokemon?.abilities &&
                         <div className="abilities">
                             <div>Abilities:</div>
-                            {pokemon.abilities?.slice(0,5).map(ability => (
+                            {pokemon.abilities?.map(ability => (
                             <li>{ability.ability.name}</li>
                         ))}
                         </div>
@@ -110,7 +115,7 @@ export default class Pokedex extends Component {
                     { pokemon?.moves &&
                         <div className="moves">
                             <div>Moves:</div>
-                            {pokemon.moves?.slice(0,5).map(move => (
+                            {pokemon.moves?.map(move => (
                             <li>{move.move.name}</li>
                         ))}
                         </div>

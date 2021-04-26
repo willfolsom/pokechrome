@@ -1,4 +1,5 @@
-import { Pokemon } from './types/Pokemon';
+import { Pokemon, PokemonLocalStorage } from './types/Pokemon';
+import { storage } from '@extend-chrome/storage'
 
 const pokeapiUrl: string = 'https://pokeapi.co/api/v2/pokemon/';
 const getOptions: object = {
@@ -8,6 +9,7 @@ const getOptions: object = {
         'Content-Type': 'application/json'
     }
 };
+const pokechromePrefix: string = "pkc-";
 
 export class PokeApiService {
     getPokemonByName(name: string): Promise<Pokemon> {
@@ -31,17 +33,43 @@ export class PokeApiService {
             .catch();
     };
 
+    storePokemonByIdLocal(id: number, caught: boolean) {
+        const pKey: string = pokechromePrefix + id.toString();
+
+        const pokemonLocalStorage: PokemonLocalStorage = {
+            id: id,
+            caught: caught
+        }
+
+        const stringifiedPLS = JSON.stringify(pokemonLocalStorage);
+        storage.sync.set({ pKey: stringifiedPLS });
+    };
+
+    getPokemonByIdLocal(id: number): Pokemon | undefined {
+        const pKey: string = pokechromePrefix + id.toString();
+
+        storage.sync.get({ pKey }).then(({ pKey }) => {
+            const parsedP: PokemonLocalStorage = JSON.parse(pKey);
+            if (parsedP != undefined) {
+                return parsedP;
+            }
+        });
+
+        return undefined;
+    };
+
     formatPokemon(pokemonData: any): Pokemon {
         return {
-            abilities: pokemonData.abilities,
+            abilities: pokemonData.abilities.slice(0,5),
             id: pokemonData.id,
             sprites: {
                 front_default: pokemonData.sprites.front_default
             },
             name: pokemonData.name,
             types: pokemonData.types,
-            moves: pokemonData.moves,
+            moves: pokemonData.moves.slice(0,5),
             weight: pokemonData.weight,
+            caught: false,
         };
     }
 }
