@@ -1,6 +1,6 @@
-import React from 'react';
-import './App.sass';
-import Pokedex from './components/Pokedex';
+import React from "react";
+import "./App.sass";
+import Pokedex from "./components/Pokedex";
 
 function App() {
   return (
