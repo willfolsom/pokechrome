@@ -1,10 +1,10 @@
-const { CheckerPlugin } = require('awesome-typescript-loader');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { optimize } = require('webpack');
-const { join } = require('path');
+const { CheckerPlugin } = require("awesome-typescript-loader");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { optimize } = require("webpack");
+const { join } = require("path");
 let prodPlugins = [];
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   prodPlugins.push(
     new optimize.AggressiveMergingPlugin(),
     new optimize.OccurrenceOrderPlugin()
@@ -13,14 +13,14 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   mode: process.env.NODE_ENV,
-  devtool: 'inline-source-map',
+  devtool: "inline-source-map",
   entry: {
-    contentscript: join(__dirname, 'contentscript.ts'),
-    background: join(__dirname, 'background.ts'),
+    contentscript: join(__dirname, "contentscript.ts"),
+    background: join(__dirname, "background.ts"),
   },
   output: {
-    path: join(__dirname, 'dist'),
-    filename: '[name].js',
+    path: join(__dirname, "dist"),
+    filename: "[name].js",
   },
   module: {
     rules: [
@@ -31,7 +31,7 @@ module.exports = {
       },
       {
         test: /\.sass$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
     ],
   },
@@ -39,11 +39,11 @@ module.exports = {
     new CheckerPlugin(),
     ...prodPlugins,
     new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
+      filename: "[name].css",
+      chunkFilename: "[id].css",
     }),
   ],
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: [".ts", ".js"],
   },
 };

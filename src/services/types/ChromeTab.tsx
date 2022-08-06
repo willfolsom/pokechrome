@@ -1,5 +1,5 @@
 export type ChromeTab = {
-    url: string,
-    title: string,
-    active: boolean
+  url: string;
+  title: string;
+  active: boolean;
 };

@@ -1,13 +1,13 @@
 {
   "name": "pokechrome",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "@types/chrome": "0.0.125",
     "@types/node": "^12.12.68",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "^4.0.3",
@@ -15,8 +15,9 @@
   },
   "scripts": {
     "start": "react-scripts start;",
-    "build": "INLINE_RUNTIME_CHUNK=false react-scripts build webpack --config webpack.config.js;",
-    "clean-install": "rm -rf node_modules; rm -rf /build; npm i;"
+    "build": "react-scripts build webpack --config webpack.config.js;",
+    "clean-install": "rm -rf node_modules; rm -rf /build; npm i;",
+    "format": "prettier --write ."
   },
   "browserslist": {
     "production": [
@@ -29,5 +30,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "2.7.1"
   }
 }
